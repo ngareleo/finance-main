@@ -1,0 +1,79 @@
+<div class="main-content-container">
+  <div class="login-img-container"></div>
+
+  <div class="login-page-content">
+    <div class="logo-container">
+      <div class="img-container">
+        <img src="/static/Navigation-Primary-finance-logo.svg" alt="Finance" />
+      </div>
+      <div class="img-container">
+        <img src="/static/menu-alt-3.svg" alt="Menu" />
+      </div>
+    </div>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="page-greeting">
+          <p id="welcome-message">Welcome back</p>
+        </div>
+        <div class="page-login-header">
+          <p id="login-message">Login to your account</p>
+        </div>
+      </div>
+
+      <!--Login form-->
+      <div class="form-container">
+        <form action="/login" class="login-form" id="login-form" method="post">
+          <div class="username-field">
+            <label for="username-field">Username</label>
+            <input
+              type="text"
+              name="username"
+              id="username-field"
+              autocomplete="off"
+            />
+            <div class="field-info error">
+              <div class="img-container">
+                <img
+                  src="/static/error_info_icon.svg"
+                  alt="Info"
+                  id="info-icon"
+                />
+              </div>
+              <p id="info-text"></p>
+            </div>
+          </div>
+
+          <div class="password-field">
+            <label for="password-field">Password</label>
+            <input type="password" name="password" id="password-field" />
+            <div class="field-info correct">
+              <div class="img-container">
+                <img src="/static/info.svg" alt="Info" id="info-icon" />
+              </div>
+              <p id="info-text"></p>
+            </div>
+            <div class="password-helpers">
+              <div class="rem-me">
+                <input
+                  type="checkbox"
+                  name="remember"
+                  id="remember-me"
+                  value="Remember me"
+                />
+                <label for="password-field">Remember me</label>
+              </div>
+              <a href="/forgot" id="forgot-pass-link">Forgot password?</a>
+            </div>
+          </div>
+          <input type="submit" value="Log in" id="login-button" />
+        </form>
+      </div>
+    </div>
+    <div class="signup-link-container">
+      <p>Don't have an account?</p>
+      <a href="/signup" id="signup-link">Join free today</a>
+    </div>
+  </div>
+</div>
+<script src="/javascripts/login.js"></script>

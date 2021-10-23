@@ -1,0 +1,299 @@
+body,
+html {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+.main-content-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.login-img-container {
+  width: 60%;
+  height: 100vh;
+  background: url(/static/sergey-pesterev-JV78PVf3gGI-unsplash.jpg);
+  background-size: cover;
+  font-family: 'Inter', sans-serif;
+}
+
+.login-page-content {
+  height: 100vh;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.logo-container {
+  display: flex;
+  height: 50px;
+  width: 90%;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 0%;
+}
+.page-content {
+  position: absolute;
+  top: 20%;
+}
+
+.page-header {
+  width: fit-content;
+  height: fit-content;
+}
+
+#welcome-message {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+
+  /* 800 */
+
+  color: #2d3748;
+  margin: 0;
+}
+
+#login-message {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 35px;
+
+  /* 900 */
+
+  color: #1a202c;
+  margin: 0;
+}
+
+.form-container {
+  width: 100%;
+  height: fit-content;
+  margin-top: 20px;
+}
+
+.username-field,
+.password-field {
+  width: 100%;
+  height: fit-content;
+  margin: 20px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.field-info.error,
+.field-info.correct {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+.field-info.error #info-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  /* identical to box height, or 171% */
+
+  /* Secondary/Red */
+
+  color: #f32d2d;
+}
+
+.field-info.error #info-icon {
+  content: url(/static/error_info_icon.svg);
+}
+
+.img-container {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#info-icon {
+  width: 18px;
+  height: 18px;
+}
+
+#info-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  /* identical to box height, or 171% */
+
+  /* Secondary/Green */
+
+  color: #249f5d;
+}
+
+#username-field,
+#password-field {
+  height: 50px;
+  width: 350px;
+
+  padding-left: 10px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  /* Secondary / Gray 4 */
+
+  color: #6f727a;
+
+  border: 1px solid #e0e2e7;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+#username-field:focus {
+  /* Primary / Blue */
+
+  border: 1px solid #2e65f3;
+}
+
+#password-field:focus {
+  /* Primary / Blue */
+
+  border: 1px solid #2e65f3;
+}
+.password-field .field-info.correct #info-text::before,
+.username-field .field-info.correct #info-text::before {
+  content: 'Yay! This username is available.';
+}
+.username-field .field-info.error #info-text::before,
+.password-field .field-info.error #info-text::before {
+  content: 'Oops. This is a mandatory field.';
+}
+
+#login-button {
+  height: 50px;
+  width: 350px;
+  background: #2e65f3;
+  border: none;
+
+  font-family: 'Inter', sans-serif;
+
+  /* Primary / Blue */
+
+  background: #2e65f3;
+  border-radius: 8px;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  /* Primary/White */
+
+  color: #ffffff;
+}
+
+label {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  font-family: 'Inter', sans-serif;
+  /* identical to box height */
+
+  /* 700 */
+  margin: 5px 0px;
+  color: #4a5568;
+}
+
+.password-helpers {
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 10px 0px;
+}
+
+.rem-me {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+#remember-me {
+  margin-right: 4px;
+}
+
+#forgot-pass-link {
+  width: fit-content;
+  text-decoration: none;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+
+  /* 800 */
+
+  color: #2c5282;
+}
+
+.signup-link-container {
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  bottom: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.signup-link-container p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 19px;
+  /* identical to box height */
+
+  color: #616161;
+}
+
+#signup-link {
+  text-decoration: none;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 19px;
+  /* identical to box height */
+
+  /* 700 */
+
+  color: #2b6cb0;
+}
+
+@media screen and (max-width: 900px) {
+  .login-img-container {
+    display: none;
+  }
+
+  .logo-container {
+    width: 90vw;
+    display: flex;
+  }
+}
