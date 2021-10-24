@@ -1,27 +1,26 @@
-var createError = require('http-errors')
-var express = require('express')
-var path = require('path')
-var cookieParser = require('cookie-parser')
-var dotenv = require('dotenv')
-var passport = require('passport')
-var session = require('express-session')
-var bodyParser = require('body-parser')
-var cors = require('cors')
-var morgan = require('morgan')
+require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv');
+const passport = require('passport');
+const session = require('express-session');
+const cors = require('cors');
+const morgan = require('morgan');
 
 //Routers
-var indexRouter = require('./server/routes/index')
-var uploadRouter = require('./server/routes/upload')
-var testRouter = require('./server/routes/test')
-var loginRouter = require('./server/routes/login')
-var signupRouter = require('./server/routes/signup')
-var failureRouter = require('./server/routes/loginFailure')
-var isAuthenticatedRouter = require('./server/routes/is_authenticated')
-var logoutRouter = require('./server/routes/logout')
+const indexRouter = require('./server/routes/index');
+const uploadRouter = require('./server/routes/upload');
+const testRouter = require('./server/routes/test');
+const loginRouter = require('./server/routes/login');
+const signupRouter = require('./server/routes/signup');
+const failureRouter = require('./server/routes/loginFailure');
+const isAuthenticatedRouter = require('./server/routes/is_authenticated');
+const logoutRouter = require('./server/routes/logout');
 
 //Express app
 
-var app = express()
+const app = express();
 const viewsDir = path.join(__dirname, 'server', 'views')
 const layoutsDir = path.join(viewsDir, 'layouts')
 
@@ -29,9 +28,9 @@ const layoutsDir = path.join(viewsDir, 'layouts')
 
 require('./config') // our mongodb database instance
 
-var handlebars = require('express3-handlebars').create({
-  defaultLayout: `${layoutsDir}/main`,
-})
+const handlebars = require('express3-handlebars').create({
+    defaultLayout: `${layoutsDir}/main`,
+});
 app.engine('handlebars', handlebars.engine)
 app.set('views', viewsDir)
 app.set('view engine', 'handlebars')

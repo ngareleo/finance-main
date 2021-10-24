@@ -1,18 +1,18 @@
 const passport = require('passport')
-const localStrategy = require('passport-local').Strategy
+const LocalStrategy = require('passport-local').Strategy
 const crypto = require('crypto')
 const User = require('../models/user')
 
-var validatePassword = (salt, hash, password) => {
+const validatePassword = (salt, hash, password) => {
   const temp = crypto
-    .pbkdf2Sync(password, salt, 10000, 512, 'sha512')
-    .toString('hex')
+      .pbkdf2Sync(password, salt, 10000, 512, 'sha512')
+      .toString('hex')
   return temp === hash
-}
+};
 
 module.exports = () => {
   passport.use(
-    new localStrategy((username, password, done) => {
+    new LocalStrategy((username, password, done) => {
       User.findOne({ username: username }, (err, user) => {
         if (err) {
           console.error('Validate error')

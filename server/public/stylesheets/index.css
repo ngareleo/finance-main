@@ -11,6 +11,11 @@ html {
 body {
   overflow-x: hidden;
 }
+
+.main-content-container.unloaded {
+  /*Content is unloaded**/
+  display: none;
+}
 .main-content-container {
   width: 100vw;
   height: 100vh;

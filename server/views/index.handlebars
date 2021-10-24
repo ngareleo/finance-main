@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/stylesheets/index.css">
-<div class="main-content-container">
+<div class="main-content-container unloaded">
       <div class="top-nav-bar-container">
         <div class="nav-bar-content">
           <div class="logo-container">
@@ -72,7 +72,7 @@
               <p>Dashboard</p>
             </div>
           </div>
-          <div class="dash-top-container">
+          <div class="dash-top-container" onload="alert('Loaded')">
             <div class="dash-top-content">
               <div class="left-combined-info-container">
                 <div class="d-top-container">
@@ -222,3 +222,9 @@
     </div>
     <script src="/javascripts/index.js"></script>
     <script src="/javascripts/nav.js"></script>
+    <script>
+      window.onload = () => {
+        document.querySelector('.main-content-container.unloaded')
+        console.log(document.querySelector('.main-content-container.unloaded').classList.remove('unloaded'))
+      }
+    </script>
