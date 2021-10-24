@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/stylesheets/login.css" />
 <div class="main-content-container">
   <div class="login-img-container"></div>
 
@@ -32,7 +33,7 @@
               id="username-field"
               autocomplete="off"
             />
-            <div class="field-info error">
+            <div class="field-info" id="username-field-info">
               <div class="img-container">
                 <img
                   src="/static/error_info_icon.svg"
@@ -47,7 +48,7 @@
           <div class="password-field">
             <label for="password-field">Password</label>
             <input type="password" name="password" id="password-field" />
-            <div class="field-info correct">
+            <div class="field-info" id="password-field-info">
               <div class="img-container">
                 <img src="/static/info.svg" alt="Info" id="info-icon" />
               </div>
@@ -66,14 +67,11 @@
               <a href="/forgot" id="forgot-pass-link">Forgot password?</a>
             </div>
           </div>
-          <input type="submit" value="Log in" id="login-button" />
+          <input type="submit" value="Log in" id="login-button" disabled />
         </form>
       </div>
     </div>
-    <div class="signup-link-container">
-      <p>Don't have an account?</p>
-      <a href="/signup" id="signup-link">Join free today</a>
-    </div>
+
   </div>
 </div>
 <script src="/javascripts/login.js"></script>

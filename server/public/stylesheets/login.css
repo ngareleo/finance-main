@@ -9,6 +9,11 @@ html {
   outline: none;
 }
 
+p,
+a {
+  font-family: 'Inter', sans-serif;
+}
+
 .main-content-container {
   width: 100vw;
   height: 100vh;
@@ -22,7 +27,6 @@ html {
   height: 100vh;
   background: url(/static/sergey-pesterev-JV78PVf3gGI-unsplash.jpg);
   background-size: cover;
-  font-family: 'Inter', sans-serif;
 }
 
 .login-page-content {
@@ -35,7 +39,7 @@ html {
 }
 
 .logo-container {
-  display: flex;
+  display: none;
   height: 50px;
   width: 90%;
   align-items: center;
@@ -94,15 +98,41 @@ html {
   align-items: flex-start;
 }
 
-.field-info.error,
-.field-info.correct {
+.field-info {
   width: 100%;
   height: fit-content;
   display: flex;
   align-items: center;
 }
 
-.field-info.error #info-text {
+.field-info .img-container {
+  display: none;
+}
+
+.field-info.clean .img-container,
+.field-info.error .img-container,
+.field-info.empty .img-container {
+  display: flex;
+}
+
+.field-info.clean #info-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  /* identical to box height, or 171% */
+
+  /* Secondary/Green */
+
+  color: #249f5d;
+}
+
+.field-info.clean #info-icon {
+  content: url(/static/info.svg);
+}
+
+.field-info.error #info-text,
+.field-info.empty #info-text {
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -114,7 +144,8 @@ html {
   color: #f32d2d;
 }
 
-.field-info.error #info-icon {
+.field-info.error #info-icon,
+.field-info.empty #info-icon {
   content: url(/static/error_info_icon.svg);
 }
 
@@ -175,12 +206,18 @@ html {
 
   border: 1px solid #2e65f3;
 }
-.password-field .field-info.correct #info-text::before,
-.username-field .field-info.correct #info-text::before {
-  content: 'Yay! This username is available.';
+.field-info.clean #info-text::before,
+.field-info.clean #info-text::before {
+  content: 'Yay! All looks good!';
 }
-.username-field .field-info.error #info-text::before,
-.password-field .field-info.error #info-text::before {
+
+.field-info.error #info-text::before,
+.field-info.error #info-text::before {
+  content: 'Looks like this field is incorrect';
+}
+
+.field-info.empty #info-text::before,
+.field-info.empty #info-text::before {
   content: 'Oops. This is a mandatory field.';
 }
 
@@ -206,6 +243,12 @@ html {
   /* Primary/White */
 
   color: #ffffff;
+}
+#login-button:disabled {
+  /* Primary / Blue */
+
+  background: #2e65f3;
+  opacity: 0.5;
 }
 
 label {

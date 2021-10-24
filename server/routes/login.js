@@ -11,10 +11,10 @@ router.post('/login', (req, res, next) => {
     if (err) return next(err)
     let isApp = req.query.type === 'app' ? true : false
 
-    if (!user && isApp) {
-      if (isApp) return res.json({ Authentication: 'Failed' })
-      return res.redirect('/login')
+    if (!user) {
+      return res.json({ Authentication: 'Failed' })
     }
+
     req.logIn(user, (err) => {
       if (err) return next(err)
       if (isApp) return res.json({ Authentication: 'Success' })

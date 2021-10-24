@@ -88,7 +88,6 @@ app.use(function (err, req, res, next) {
 
 // this should appear AFTER all of your routes
 app.use(function (req, res) {
-  console.log(err.message)
   res.status(404).render('error')
 })
 
