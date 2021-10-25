@@ -1,30 +1,24 @@
-var express = require('express')
-var router = express.Router()
-var Transactions = require('../models/transactions')
+const express = require('express')
+const router = express.Router()
+const Transactions = require('../models/transactions')
+const Axios = require('axios').default
 
 router.get('/test', (req, res, next) => {
+  //if user is not authenticated we foward them to login then later to the requested url
   if (req.isAuthenticated()) {
     //send the credentials
-    let query = {
-      user_id: req.session.passport.user,
-    }
-    let order = {
-      message_id: -1,
-    }
-    var data
-    Transactions.findOne(query)
-      .sort(order)
-      .limit(1)
-      .then((result) => {
-        if (data != null && data != undefined) {
-          res.json({ message: 'Okay', limit: data })
-        }
+    let user_id = req.session.passport.user
+    let url = `http://127.0.0.1:5000/${user_id}`
+    Axios.get(url)
+      .then((response) => {
+        return res.json(response.data)
       })
       .catch((err) => {
-        res.json({ message: 'Failure', errorMessage: err })
+        console.error(err)
+        return res.send(err)
       })
-    res.json({ message: 'Okay', limit: 0 })
   } else {
+    req.session.redirect = '/test'
     res.redirect('/login')
   }
 })
