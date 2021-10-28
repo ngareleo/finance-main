@@ -16,10 +16,12 @@ body {
   /*Content is unloaded**/
   display: none;
 }
+
 .main-content-container {
   width: 100vw;
   height: 100vh;
   font-family: 'Inter', sans-serif;
+  padding-bottom: 20px;
 }
 
 .top-nav-bar-container {
@@ -62,9 +64,10 @@ body {
 .tab-chooser-content {
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 
-.tab-chooser-content.active-tab {
+.tab-chooser-content.active {
   border-bottom: 5px solid #2e65f3;
 }
 
@@ -75,7 +78,7 @@ body {
   color: #232325;
 }
 
-.tab-chooser-content.active-tab #tab-chooser-label {
+.tab-chooser-content.active #tab-chooser-label {
   color: #2e65f3;
 }
 
@@ -142,10 +145,6 @@ body {
   color: #6f727a;
 }
 
-#search-bar::placeholder {
-  font-size: 16px;
-}
-
 .main-dash-container {
   width: 80%;
   height: 70vh;
@@ -186,7 +185,7 @@ body {
   width: 60%;
   height: fit-content;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-start;
 }
 
@@ -225,14 +224,14 @@ body {
 .left-combined-info-container div p:first-child {
   margin: 0;
   margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .left-combined-info-container div p:nth-child(2) {
   margin: 0;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 30px;
   color: #232325;
 }
 
@@ -275,7 +274,7 @@ body {
 
 #usage-label {
   /* Secondary / Gray 4 */
-
+  font-size: 14px;
   color: #6f727a;
   font-weight: 600;
 }
@@ -292,7 +291,7 @@ body {
   margin: 0;
   font-style: normal;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 28px;
   /* identical to box height, or 122% */
 
   /* Primary/Black */
@@ -330,7 +329,6 @@ body {
   height: 500px;
   width: 100%;
   display: flex;
-  flex-direction: column;
   margin-top: 20px;
   align-items: flex-start;
 }
@@ -363,15 +361,22 @@ body {
   text-align: left;
   font-style: normal;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 12px;
   color: #6f727a;
   margin: 0%;
+}
+
+.t-type-column {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .subject-column {
   padding: 10px;
   text-align: left;
-  width: 50%;
+  width: 30%;
 }
 
 .date-column {
@@ -395,15 +400,38 @@ body {
   border-bottom: 1px solid #e0e2e7;
 }
 
+.table-row:hover {
+  background: #f7f7f9;
+}
+
 .table-row:last-child {
   border: none;
+}
+
+.t-type-col-content .img-container {
+  width: 42px;
+  height: 42px;
+  background: #ffffff;
+  /* Secondary/Gray 2 */
+
+  border: 1px solid #e0e2e7;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#transaction-symbol {
+  color: #e0e2e7;
+  font-weight: 700;
+  font-size: 15px;
 }
 
 #item-subject-name {
   margin: 0%;
   font-style: normal;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   /* identical to box height, or 150% */
 
@@ -428,7 +456,7 @@ body {
 #item-date {
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 24px;
   /* identical to box height, or 150% */
 
@@ -449,7 +477,19 @@ body {
   border-radius: 20px;
 }
 
-#item-amount {
+.col-amount-content.minus {
+  width: fit-content;
+  height: fit-content;
+  /* Secondary/Gray 1 */
+
+  background: #f7f7f9;
+  /* Secondary/Gray 2 */
+
+  border: 1px solid #e0e2e7;
+  border-radius: 20px;
+}
+
+.col-amount-content.plus #item-amount {
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -462,14 +502,28 @@ body {
   color: #249f5d;
 }
 
+.col-amount-content.minus #item-amount {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  /* identical to box height, or 167% */
+
+  /* Secondary/Green */
+  padding: 8px 16px;
+  margin: 0%;
+  /* Secondary / Gray 4 */
+
+  color: #6f727a;
+}
 .t-info-container {
-  width: 600px;
+  width: fit-content;
   height: fit-content;
   border: 1px solid #e0e2e7;
   box-sizing: border-box;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05), 0px 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-  margin-top: 20px;
+  margin: 0px 20px;
   padding: 12px 20px;
 }
 
@@ -523,12 +577,13 @@ body {
 }
 
 .info-content {
-  width: 100%;
+  width: fit-content;
   height: fit-content;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .info-content div p:first-child {
   font-style: normal;
   font-weight: 600;

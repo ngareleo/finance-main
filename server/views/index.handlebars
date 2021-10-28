@@ -13,23 +13,23 @@
       <div class="tab-chooser-container">
         <div class="tab-containers">
           <div class="home-tab-container">
-            <div class="tab-chooser-content active-tab" ng-app="" ng-init="name='Home'">
-              <p id="tab-chooser-label" ng-bind="name"></p>
+            <div class="tab-chooser-content" ng-class="{active: pageInfo[0].active}" ng-click="changeTab(0)">
+              <p id="tab-chooser-label" ng-bind="pageInfo[0].label"></p>
             </div>
           </div>
           <div class="transactions-tab-container">
-            <div class="tab-chooser-content">
-              <p id="tab-chooser-label">Transactions</p>
+            <div class="tab-chooser-content" ng-class="{active: pageInfo[1].active}" ng-click="changeTab(1)">
+              <p id="tab-chooser-label" ng-bind="pageInfo[1].label"></p>
             </div>
           </div>
           <div class="analytics-tab-container">
-            <div class="tab-chooser-content">
-              <p id="tab-chooser-label">Analytics</p>
+            <div class="tab-chooser-content" ng-class="{active: pageInfo[2].active}" ng-click="changeTab(2)">
+              <p id="tab-chooser-label" ng-bind="pageInfo[2].label"></p>
             </div>
           </div>
           <div class="inbox-tab-container">
-            <div class="tab-chooser-content">
-              <p id="tab-chooser-label">Inbox</p>
+            <div class="tab-chooser-content" ng-class="{active: pageInfo[3].active}" ng-click="changeTab(3)">
+              <p id="tab-chooser-label" ng-bind="pageInfo[3].label"></p>
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
       </div>
     </div>
   </div>
-  <div class="main-body-container">
+  <div class="main-body-container" ng-show="pageInfo[0].active">
     <div class="search-bar-container">
       <div class="search-bar">
         <input
@@ -72,7 +72,7 @@
           <p>Dashboard</p>
         </div>
       </div>
-      <div class="dash-top-container" onload="alert('Loaded')" >
+      <div class="dash-top-container" >
         <div class="dash-top-content">
           <div class="left-combined-info-container">
             <div class="d-top-container">
@@ -84,13 +84,13 @@
             <div class="d-top-container">
               <div class="d-top-content">
                 <p id="income-label">Income</p>
-                <p id="income-amount">67,344</p>
+                <p id="income-amount" ng-bind="income | currency : '' : 0"></p>
               </div>
             </div>
             <div class="d-top-container">
               <div class="d-top-content">
                 <p id="spent-label">Spent</p>
-                <p id="spent-amount">3,728</p>
+                <p id="spent-amount" ng-bind="spent | currency : '' : 0"></p>
               </div>
             </div>
           </div>
@@ -120,99 +120,65 @@
         <div class="recent-t-table">
           <div class="t-table-content">
             <div class="table-header">
+              <p id="header-type" class="t-type-column">Type</p>
               <p id="header-subject" class="subject-column">Subject</p>
               <p id="header-date" class="date-column">Date</p>
               <p id="header-amount" class="amount-column">Amount</p>
             </div>
-            <div class="table-row">
-              <div class="subject-column">
-                <div class="subject-col-content">
-                  <p id="item-subject-name">Amy Matthews</p>
-                  <p id="item-subject-phonenumber">0700158899</p>
+
+            <div class="table-body" ng-repeat="transaction in transactions">
+              <!--
+                A table row consists of transaction type
+              -->
+              <div class="table-row" ng-click="switchInfo(transaction.index)">
+
+                <div class="t-type-column">
+                  <div class="t-type-col-content">
+                    <div class="img-container">
+                      <p id="transaction-symbol" ng-bind="transaction.type"></p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="date-column">
-                <div class="date-col-content">
-                  <p id="item-date">Today</p>
+                <div class="subject-column">
+                  <div class="subject-col-content">
+                    <p id="item-subject-name" ng-bind="transaction.subject.name"></p>
+                    <p id="item-subject-phonenumber" ng-bind="transaction.subject.subjectID"></p>
+                  </div>
                 </div>
-              </div>
-              <div class="amount-column">
-                <div class="amount-col-amount">
-                  <div class="col-amount-content plus">
-                  <p id="item-amount">3,454</p>
-                  </div>  
+                <div class="date-column">
+                  <div class="date-col-content">
+                    <p id="item-date" ng-bind="transaction.date.time"></p>
+                  </div>
                 </div>
-              </div>
+                <div class="amount-column">
+                  <div class="amount-col-amount">
+                    <div class="col-amount-content plus" ng-show="transaction.amount.gain">
+                      <p id="item-amount" ng-bind="transaction.amount.amount"></p>
+                    </div>  
+                    <div class="col-amount-content minus" ng-hide="transaction.amount.gain">
+                      <p id="item-amount" ng-bind="transaction.amount.amount"></p>
+                    </div>  
+                  </div>
+                </div>
             </div>
-            <div class="table-row">
-              <div class="subject-column">
-                <div class="subject-col-content">
-                  <p id="item-subject-name">Amy Matthews</p>
-                  <p id="item-subject-phonenumber">0700158899</p>
-                </div>
-              </div>
-              <div class="date-column">
-                <div class="date-col-content">
-                  <p id="item-date">Today</p>
-                </div>
-              </div>
-              <div class="amount-column">
-                <div class="amount-col-amount">
-                  <div class="col-amount-content plus">
-                  <p id="item-amount">3,454</p>
-                  </div>  
-                </div>
-              </div>
-            </div>
-            <div class="table-row">
-              <div class="subject-column">
-                <div class="subject-col-content">
-                  <p id="item-subject-name">Amy Matthews</p>
-                  <p id="item-subject-phonenumber">0700158899</p>
-                </div>
-              </div>
-              <div class="date-column">
-                <div class="date-col-content">
-                  <p id="item-date">Today</p>
-                </div>
-              </div>
-              <div class="amount-column">
-                <div class="amount-col-amount">
-                  <div class="col-amount-content plus">
-                  <p id="item-amount">3,454</p>
-                  </div>  
-                </div>
-              </div>
             </div>
           </div>
         </div>
         <div class="t-info-container">
           <div class="info-container-header">
             <div class="info-subject-name-content">
-              <p id="info-subject-name">
-                Amy Matthews
+              <p id="info-subject-name" ng-bind="tInfoContent.subject">
+                
               </p>
             </div>
             <div class="info-t-type-content">
-              <p id="info-t-type">RECIEVE</p>
+              <p id="info-t-type" ng-bind="tInfoContent.type"></p>
             </div>
           </div>
-          <div class="info-content">
-            <div class="info-amount-container">
-              <p id="info-amount-title">Amount</p>
-              <p id="info-amount-value">3,454</p>
-            </div>
-            <div class="info-balance-container">
-              <p id="info-balance-title">Balance</p>
-              <p id="info-amount-value">33,454</p>
-            </div>
-            <div class="info-date-container">
-              <p id="info-date-title">Date</p>
-              <p id="info-date-value">Sep 15, 2021</p>
-            </div>
-            <div class="info-time-container">
-              <p id="info-time-title">Time</p>
-              <p id="info-time-value">12:30 pm</p>
+          <div class="info-content" ng-repeat="content in tInfoContent.items">
+            <div class="content">
+              <p id="i_c_title" ng-bind="content.label"></p>
+              <p id="i_c_value" ng-bind="content.value"></p>
             </div>
           </div>
         </div>
@@ -220,31 +186,14 @@
     </div>
   </div>
 </div>
+
 <script src="/javascripts/index.js"></script>
-<script src="/javascripts/nav.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="/javascripts/index.angular.js"></script>
 <script>
   window.onload = () => {
     document.querySelector('.main-content-container.unloaded')
-    console.log(document.querySelector('.main-content-container.unloaded').classList.remove('unloaded'))
+    document.querySelector('.main-content-container.unloaded').classList.remove('unloaded')
   }
 </script>
 
-<script type="text/javascript">
-
-  //angular js module
-  const app = angular.module('TopDashContainer', []);
-  
-  // dashboard data 
-  //balance
-  //usage
-  //Monthly amounts
-
-  app.controller('MainCtrl', ($scope) => 
-    {
-      $scope.balance = 34343;
-    }
-  )
-
-
-</script>

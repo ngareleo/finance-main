@@ -10,7 +10,8 @@ html {
 }
 
 p,
-a {
+a,
+label {
   font-family: 'Inter', sans-serif;
 }
 
@@ -20,6 +21,40 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.main-content-container.unloaded {
+  display: none;
+}
+
+.flash-message {
+  width: 90%;
+  height: 30px;
+  padding: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffdbdb;
+}
+
+.flash-message.show {
+  display: none;
+}
+
+#flashmessage {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  /* Primary / Blue */
+
+  color: #f32d2d;
+}
+
+#closebutton {
+  color: #f32d2d;
 }
 
 .login-img-container {
@@ -98,82 +133,6 @@ a {
   align-items: flex-start;
 }
 
-.field-info {
-  width: 100%;
-  height: fit-content;
-  display: flex;
-  align-items: center;
-}
-
-.field-info .img-container {
-  display: none;
-}
-
-.field-info.clean .img-container,
-.field-info.error .img-container,
-.field-info.empty .img-container {
-  display: flex;
-}
-
-.field-info.clean #info-text {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 24px;
-  /* identical to box height, or 171% */
-
-  /* Secondary/Green */
-
-  color: #249f5d;
-}
-
-.field-info.clean #info-icon {
-  content: url(/static/info.svg);
-}
-
-.field-info.error #info-text,
-.field-info.empty #info-text {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 24px;
-  /* identical to box height, or 171% */
-
-  /* Secondary/Red */
-
-  color: #f32d2d;
-}
-
-.field-info.error #info-icon,
-.field-info.empty #info-icon {
-  content: url(/static/error_info_icon.svg);
-}
-
-.img-container {
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-#info-icon {
-  width: 18px;
-  height: 18px;
-}
-
-#info-text {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 24px;
-  /* identical to box height, or 171% */
-
-  /* Secondary/Green */
-
-  color: #249f5d;
-}
-
 #username-field,
 #password-field {
   height: 50px;
@@ -182,7 +141,7 @@ a {
   padding-left: 10px;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   /* identical to box height, or 150% */
 
@@ -195,30 +154,19 @@ a {
   border-radius: 8px;
 }
 
-#username-field:focus {
-  /* Primary / Blue */
-
-  border: 1px solid #2e65f3;
+.loginForm.ng-pristine #username-field,
+.loginForm.ng-pristine #password-field {
+  border: 1px solid #e0e2e7;
 }
 
-#password-field:focus {
-  /* Primary / Blue */
-
-  border: 1px solid #2e65f3;
-}
-.field-info.clean #info-text::before,
-.field-info.clean #info-text::before {
-  content: 'Yay! All looks good!';
+#username-field.ng-invalid,
+#password-field.ng-invalid {
+  border: 2px solid #f32d2d;
 }
 
-.field-info.error #info-text::before,
-.field-info.error #info-text::before {
-  content: 'Looks like this field is incorrect';
-}
-
-.field-info.empty #info-text::before,
-.field-info.empty #info-text::before {
-  content: 'Oops. This is a mandatory field.';
+#username-field.ng-valid,
+#password-field.ng-valid {
+  border: 2px solid #249f5d;
 }
 
 #login-button {
@@ -244,6 +192,7 @@ a {
 
   color: #ffffff;
 }
+
 #login-button:disabled {
   /* Primary / Blue */
 
@@ -254,7 +203,7 @@ a {
 label {
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 19px;
   font-family: 'Inter', sans-serif;
   /* identical to box height */

@@ -6,10 +6,9 @@ var passport = require('passport')
 router.get('/', (req, res, next) => {
   if (req.isAuthenticated()) {
     //we need to get the actual data
-
     res.render('index')
   } else {
-    console.log('Not authenticated')
+    req.session.redirect = '/'
     res.redirect('/login')
   }
 })

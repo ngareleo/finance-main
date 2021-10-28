@@ -17,18 +17,16 @@ router.get('/upload', (req, res, next) => {
       .limit(1)
       .then((result) => {
         if (result != null && result != undefined) {
-          res.json({ message: 'Okay', limit: result.message_id })
-          return
+          return res.json({ message: 'Okay', limit: result.message_id })
         } else {
-          res.json({ message: 'Okay', limit: 0 })
-          return
+          return res.json({ message: 'Okay', limit: 0 })
         }
       })
       .catch((err) => {
-        res.json({ message: 'Failure', errorMessage: err })
-        return
+        return res.json({ message: 'Failure', errorMessage: err })
       })
   } else {
+    req.session.redirect = '/upload'
     res.redirect('/login')
   }
 })

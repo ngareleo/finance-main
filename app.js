@@ -76,7 +76,6 @@ app.use(passport.session())
 
 app.use((req, res, next) => {
   let requested = req.session.redirect
-  console.log('Requested ', requested)
   if (requested != undefined) {
     if (req.isAuthenticated()) {
       delete req.session.redirect

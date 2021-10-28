@@ -1,8 +1,18 @@
 <link rel="stylesheet" href="/stylesheets/login.css" />
-<div class="main-content-container">
+<div
+  class="main-content-container unloaded"
+  ng-app="LoginModule"
+  ng-controller="LoginCtrl"
+>
   <div class="login-img-container"></div>
 
   <div class="login-page-content">
+
+    <div class="flash-message" ng-class="{show: showFlash}">
+      <p id="flashmessage" ng-bind="errorMessage"></p>
+      <p id="closebutton" ng-click="closeFlash()">&times</p>
+    </div>
+
     <div class="logo-container">
       <div class="img-container">
         <img src="/static/Navigation-Primary-finance-logo.svg" alt="Finance" />
@@ -24,7 +34,7 @@
 
       <!--Login form-->
       <div class="form-container">
-        <form action="/login" class="login-form" id="login-form" method="post">
+        <form name="loginForm" ng-submit="submitForm()" class="loginForm">
           <div class="username-field">
             <label for="username-field">Username</label>
             <input
@@ -32,28 +42,25 @@
               name="username"
               id="username-field"
               autocomplete="off"
+              ng-change="changeUsername()"
+              ng-model="userUsername"
+              ng-minlength="4"
+              required
             />
-            <div class="field-info" id="username-field-info">
-              <div class="img-container">
-                <img
-                  src="/static/error_info_icon.svg"
-                  alt="Info"
-                  id="info-icon"
-                />
-              </div>
-              <p id="info-text"></p>
-            </div>
           </div>
 
           <div class="password-field">
             <label for="password-field">Password</label>
-            <input type="password" name="password" id="password-field" />
-            <div class="field-info" id="password-field-info">
-              <div class="img-container">
-                <img src="/static/info.svg" alt="Info" id="info-icon" />
-              </div>
-              <p id="info-text"></p>
-            </div>
+            <input
+              type="password"
+              name="password"
+              id="password-field"
+              ng-model="userPassword"
+              ng-change="passwordChange()"
+              ng-minlength="4"
+              required
+            />
+
             <div class="password-helpers">
               <div class="rem-me">
                 <input
@@ -67,11 +74,25 @@
               <a href="/forgot" id="forgot-pass-link">Forgot password?</a>
             </div>
           </div>
-          <input type="submit" value="Log in" id="login-button" disabled />
+          <input
+            type="submit"
+            value="Log in"
+            id="login-button"
+            ng-disabled="loginForm.$invalid"
+          />
         </form>
       </div>
     </div>
 
   </div>
 </div>
-<script src="/javascripts/login.js"></script>
+<script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"
+></script>
+<script src="/javascripts/login.angular.js"></script>
+<script>
+  window.onload = () => {
+  document.querySelector('.main-content-container.unloaded')
+  document.querySelector('.main-content-container.unloaded').classList.remove('unloaded')
+  }
+</script>
