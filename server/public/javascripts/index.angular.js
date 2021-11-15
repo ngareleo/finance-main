@@ -11,11 +11,14 @@ const app = angular.module('TopDashContainer', [])
   **/
 
 app.factory('dashManager', [
-  () => {
+  '$document',
+  ($document) => {
     var content = {}
     var rt_array = []
     var t_history_table = []
     var info_content = {} // feed it with valid objects
+    var monthly_data = []
+    var barChartFigures = [['Month', 'Income', 'Spending']]
 
     const mapType = (t_type) => {
       return t_type[0]
@@ -103,6 +106,7 @@ app.factory('dashManager', [
       addContent: (dt) => {
         content = dt
         rt_array = dt.details.rt.data
+        monthly_data = dt.details.monthly_data
       },
 
       getContent: () => {
@@ -138,6 +142,26 @@ app.factory('dashManager', [
         return t_history_table
       },
 
+      drawChart: () => {
+        var chartContainer = $document.querySelector(
+          '.bottom-analytics-container',
+        )
+        console.log(chartContainer)
+      },
+
+      prepareMonthlyChartFigures: () => {
+        var md = []
+        for (var i in monthly_data) {
+          let monthObj = []
+          let item = monthly_data[i]
+          monthObj.push(`${item.label.month} ${item.label.year}`)
+          monthObj.push(item.data.income)
+          monthObj.push(item.data.spent)
+
+          md.push(monthObj)
+        }
+      },
+
       getInfoContent: (n) => {
         // feed
         var info = {}
@@ -153,7 +177,6 @@ app.factory('dashManager', [
             key != 'subject'
           ) {
             var itemLabel
-            console.log('Key ', key, '.Value ', value)
             switch (key) {
               case 'balance':
                 itemLabel = 'Balance'
@@ -188,7 +211,6 @@ app.factory('dashManager', [
         }
         info.items = cleanItems
         info_content = info
-        console.log(info_content)
         return info_content
       },
     }
@@ -198,8 +220,9 @@ app.factory('dashManager', [
 app.controller('MainCtrl', [
   '$scope',
   '$http',
+  '$document',
   'dashManager',
-  async ($scope, $http, dashManager) => {
+  async ($scope, $http, $document, dashManager) => {
     await $http
       .get('/get-data?dType=dashboard')
       .then((res) => {
@@ -215,12 +238,12 @@ app.controller('MainCtrl', [
         $scope.pageInfo = [
           {
             label: 'Home',
-            active: false,
+            active: true,
           },
 
           {
             label: 'Transactions',
-            active: true,
+            active: false,
           },
           {
             label: 'Analytics',
@@ -245,6 +268,7 @@ app.controller('MainCtrl', [
 
         $scope.transactions = dashManager.getHistTable()
         $scope.tInfoContent = dashManager.getInfoContent(0)
+        $scope.monthlyData = dashManager.prepareMonthlyChartFigures()
         $scope.switchInfo = (n) => {
           // feed the transaction at index n to the transaction render
           $scope.tInfoContent = dashManager.getInfoContent(n)

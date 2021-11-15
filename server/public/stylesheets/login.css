@@ -11,8 +11,14 @@ html {
 
 p,
 a,
-label {
+label,
+canvas {
   font-family: 'Inter', sans-serif;
+}
+
+canvas {
+  width: 1000px !important;
+  height: 400px !important;
 }
 
 .main-content-container {

@@ -167,9 +167,7 @@
         <div class="t-info-container">
           <div class="info-container-header">
             <div class="info-subject-name-content">
-              <p id="info-subject-name" ng-bind="tInfoContent.subject">
-                
-              </p>
+              <p id="info-subject-name" ng-bind="tInfoContent.subject"></p>
             </div>
             <div class="info-t-type-content">
               <p id="info-t-type" ng-bind="tInfoContent.type"></p>
@@ -183,13 +181,33 @@
           </div>
         </div>
       </div>
+      <div class="bottom-analytics-container" id="bottom-analytics-container">
+        <div class="chart-container">
+        <div class="chart-header">
+          <p id="chart-header">Monthly Income</p>
+          <div class="time-frame-container">
+            <p id="time-frame">AUG 2020 - FEB 2021</p>
+          </div>
+        </div>
+        <div class="chart-bar-container">
+          <canvas id="playground"></canvas>
+        </div>
+      </div>
+      </div>
     </div>
   </div>
 </div>
 
 <script src="/javascripts/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script src="/javascripts/index.angular.js"></script>
+<script>
+
+</script>
 <script>
   window.onload = () => {
     document.querySelector('.main-content-container.unloaded')
@@ -197,3 +215,4 @@
   }
 </script>
 
+<script src="/javascripts/index.charts.js"></script>
