@@ -27,7 +27,7 @@ router.get('/upload', (req, res, next) => {
       })
   } else {
     req.session.redirect = '/upload'
-    res.redirect('/login')
+    return res.redirect('/login')
   }
 })
 
@@ -49,9 +49,9 @@ router.post('/upload', (req, res, next) => {
     }
 
     //feed the messages to a Regex Digest Machine
-    res.json({ message: 'Success' })
+    return res.json({ message: 'Success' })
   } else {
-    res.json({ message: 'Unauthenticated' })
+    return res.json({ message: 'Unauthenticated' })
   }
 })
 

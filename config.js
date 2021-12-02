@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
 let database = process.env.DATABASE
-const uri = `mongodb://127.0.0.1:27017/CallSaul`
+const uri = `mongodb://127.0.0.1:27017/Mapesa`
 let server = process.env.SERVER || 'localhost'
 
 class Connection {

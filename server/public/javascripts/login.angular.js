@@ -16,7 +16,7 @@ app.controller('LoginCtrl', [
   ($scope, $http, $window, LoginManager) => {
     $scope.showFlash = true
     $scope.errorMessage =
-      '😱  Oh dear! This username and password pair seems to be incorrect.'
+      'Oh dear! This username and password pair seems to be incorrect.'
     const URL = '/login?type=app'
     $scope.submitForm = () => {
       $http
