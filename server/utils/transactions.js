@@ -13,26 +13,10 @@ const Transaction = require('../models/transactions')
 var convertToDate = (time, date) => {
   time = time.trim()
   date = date.trim()
-  let am = time.slice(time.indexOf(' ') + 1),
-    hr = time.slice(0, time.indexOf(':')),
-    min = time.slice(time.indexOf(':') + 1, time.indexOf(' '))
-  let hrTime =
-    am == 'AM'
-      ? Number(hr) == 12
-        ? 0
-        : Number(hr)
-      : Number(hr) == 12
-      ? 12
-      : Number(hr) + 12
-  console.log(hrTime)
-  let calendar = date.split('/')
-  return new Date(
-    '20' + calendar[2],
-    Number(calendar[1]) - 1,
-    calendar[0],
-    hrTime,
-    min,
-  )
+  let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  let [d, m, y] = date.split(' ')[0].split('/')
+  console.log(`${d} ${months[Number(m) -1]} ${y} ${time}`)
+  return new Date(`${d} ${months[Number(m) - 1]} ${y} ${time}`)
 }
 
 var convertToNumber = (number) => {
@@ -337,9 +321,6 @@ const test = (message, _id, user_id) => {
         break
     }
     let data = new Rep(message, _id, user_id).newTransaction()
-  }
-  if (!isUploaded) {
-    console.error("Message couldn't be read ", message)
   }
 }
 

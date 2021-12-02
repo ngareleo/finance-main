@@ -586,10 +586,8 @@ body {
   width: 100%;
   height: fit-content;
   display: grid;
+  padding: 0 20px;
   grid-template-columns: auto auto;
-}
-
-.content {
 }
 
 .info-content div p:first-child {
